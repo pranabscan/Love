@@ -21,8 +21,11 @@ font-family:Poppins,system-ui,Segoe UI,Arial;
 background:linear-gradient(120deg,#ffe6ef,#fff);
 color:var(--dark);
 overflow-x:hidden;
-display:none;   /* hides whole website until password correct */
 }
+#siteContent{
+display:none;
+}
+
   header{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
   h1{font-family:'Great Vibes',cursive;font-size:72px;margin:0;color:var(--pink);text-shadow:0 8px 24px rgba(255,77,136,.25)}
   .subtitle{font-size:20px;opacity:.8;margin-top:10px}
@@ -87,6 +90,7 @@ Open My Heart 💖
 
 <p id="wrong" style="color:#ff9fbf;margin-top:16px"></p>
 </div>
+<div id="siteContent">
 
 <!-- Background Love Music -->
 <audio id="bgMusic" loop preload="auto">
@@ -372,7 +376,8 @@ function checkPassword(){
 
   if(entered === CORRECT_PASSWORD){
       document.getElementById("lockScreen").style.display="none";
-      document.body.style.display="block";
+      document.getElementById("siteContent").style.display="block";
+
 
       // start music automatically
       const music=document.getElementById("bgMusic");
@@ -384,6 +389,7 @@ function checkPassword(){
   }
 }
 </script>
+</div>
 
 </body>
 </html>
