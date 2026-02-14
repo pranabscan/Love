@@ -15,7 +15,14 @@
 
   :root{--pink:#ff4d88;--dark:#1f1f1f;--light:#fff0f5}
   *{box-sizing:border-box}
-  body{margin:0;font-family:Poppins,system-ui,Segoe UI,Arial;background:linear-gradient(120deg,#ffe6ef,#fff);color:var(--dark);overflow-x:hidden}
+  body{
+margin:0;
+font-family:Poppins,system-ui,Segoe UI,Arial;
+background:linear-gradient(120deg,#ffe6ef,#fff);
+color:var(--dark);
+overflow-x:hidden;
+display:none;   /* hides whole website until password correct */
+}
   header{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
   h1{font-family:'Great Vibes',cursive;font-size:72px;margin:0;color:var(--pink);text-shadow:0 8px 24px rgba(255,77,136,.25)}
   .subtitle{font-size:20px;opacity:.8;margin-top:10px}
@@ -56,6 +63,31 @@
 </style>
 </head>
 <body>
+  <!-- PASSWORD LOCK SCREEN -->
+
+<div id="lockScreen" style="position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e293b);color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;z-index:999999;font-family:Poppins">
+
+<h1 style="font-family:'Great Vibes',cursive;font-size:60px;color:#ff7fb0;margin-bottom:10px;">
+For Sweety ❤️
+</h1>
+
+<p style="opacity:.85;margin-bottom:18px">
+Only you can open this…<br>
+Enter our special date
+</p>
+
+<input id="passInput" type="password" placeholder="DDMMYYYY"
+style="padding:14px;border-radius:14px;border:none;font-size:18px;text-align:center;outline:none">
+
+<br><br>
+
+<button onclick="checkPassword()" style="padding:14px 30px;border:none;border-radius:999px;background:#ff4d88;color:white;font-size:18px;cursor:pointer">
+Open My Heart 💖
+</button>
+
+<p id="wrong" style="color:#ff9fbf;margin-top:16px"></p>
+</div>
+
 <!-- Background Love Music -->
 <audio id="bgMusic" loop preload="auto">
   <source src="song.mp3" type="audio/mpeg">
@@ -331,5 +363,27 @@ function sayYes(){
 <script>
   document.getElementById('modalText').textContent=`Forever and always shona.`;
 </script>
+  <script>
+/* CHANGE PASSWORD HERE */
+const CORRECT_PASSWORD = "170620";   // Sweety birthday (example)
+
+function checkPassword(){
+  const entered = document.getElementById("passInput").value;
+
+  if(entered === CORRECT_PASSWORD){
+      document.getElementById("lockScreen").style.display="none";
+      document.body.style.display="block";
+
+      // start music automatically
+      const music=document.getElementById("bgMusic");
+      music.volume=0.5;
+      music.play().catch(()=>{});
+  }
+  else{
+      document.getElementById("wrong").innerText="Wrong date… try again ❤️";
+  }
+}
+</script>
+
 </body>
 </html>
